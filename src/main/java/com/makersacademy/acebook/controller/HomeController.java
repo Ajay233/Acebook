@@ -1,6 +1,6 @@
 package com.makersacademy.acebook.controller;
 
-import com.makersacademy.acebook.model.Greeting;
+
 import com.makersacademy.acebook.model.Post;
 import com.makersacademy.acebook.model.PostForm;
 import com.makersacademy.acebook.repository.PostRepository;
@@ -15,13 +15,14 @@ public class HomeController {
 
 	private final PostRepository postRepository;
 
-	@Autowired
+	@Autowired  // Injects the Post repo into the controller
 	public HomeController(PostRepository postRepository) {
 		this.postRepository = postRepository;
 	}
 
 	@RequestMapping(value = "/")
-	public String index() {
+	public String index(Model model) {
+		model.addAttribute("test", postRepository.findAll());
 		return "index";
 	}
 
@@ -29,12 +30,13 @@ public class HomeController {
 	@GetMapping("/greeting")
 	public String greeting(@RequestParam(name="name", required=false, defaultValue="World") String name, Model model) {
 		model.addAttribute("name", name);
-		return "postForm";
+		return "greeting";
 	}
 
+	// Added title
 	@GetMapping("/post")
 	public String post(Model model) {
-		model.addAttribute("post", new PostForm("change me"));
+		model.addAttribute("post", new PostForm("change me", "change me too"));
 		return "postForm";
 	}
 
@@ -48,5 +50,9 @@ public class HomeController {
 
 	//Create a new GET endpoint which lists all the posts
 
-
+	@GetMapping("/readPosts")
+	public String readPosts(Model model){
+		model.addAttribute("posts", postRepository.findAll());
+		return "readPosts";
+	}
 }

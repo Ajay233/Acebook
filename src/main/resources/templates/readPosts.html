@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .main{
+            border-style: inset;
+            margin-top: 15px;
+            margin-bottom: 15px;
+            width: 50%;
+        }
+        .title{
+            background-color: rgba(62, 127, 232, 0.4);
+            margin: 0px;
+        }
+        .body{
+            background-image: linear-gradient(to bottom right, gray, white);
+            margin: 0px;
+        }
+        p{
+            margin: 0px;
+        }
+    </style>
+</head>
+<body>
+
+    <center>
+        <h1>Posts</h1>
+        <br>
+        <div class="main" th:each="post : ${posts}">
+            <div class="title">
+                <p>Title: <span th:text="${post.getTitle()}"></span></p>
+            </div>
+            <div class="body">
+                <p>Message: <span th:text="${post.getContent()}"></span></p>
+            </div>
+        </div>
+    </center>
+
+</body>
+</html>
