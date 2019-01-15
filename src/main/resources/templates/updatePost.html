@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .main{
+            border-style: inset;
+            margin-top: 15px;
+            margin-bottom: 15px;
+            width: 50%;
+        }
+        .title{
+            background-color: rgba(62, 127, 232, 0.4);
+            margin: 0px;
+        }
+        .body{
+            background-image: linear-gradient(to bottom right, gray, white);
+            margin: 0px;
+        }
+        p{
+            margin: 0px;
+        }
+    </style>
+
+</head>
+<body>
+    <div class="main">
+        <div class="title" th:text="${title}"></div>
+        <div class="body" th:text="${content}"></div>
+    </div>
+
+    <form action="#" th:action="@{/updatedPost}" method="post">
+        <input type="text" th:value="title" name="title">
+        <input type="text" th:value="content" name="content">
+        <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
+    </form>
+</body>
+</html>

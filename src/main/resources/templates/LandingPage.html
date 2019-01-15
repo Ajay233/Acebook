@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Acebook</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+</head>
+<body>
+    <center>
+    <h1>Welcome to Acebook <i class="fas fa-journal-whills"></i></h1>
+
+    <h3>Login to get started</h3>
+    <form action="#" th:action="@{/login}" method="post">
+        Name:
+        <input type="text" th:value="username" placeholder="name">
+        Password:
+        <input type="text" th:value="password" placeholder="password">
+        <input type="submit" value="Submit">
+    </form>
+    </center>
+</body>
+</html>

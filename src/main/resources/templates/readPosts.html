@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .main{
+            border-style: inset;
+            margin-top: 15px;
+            margin-bottom: 15px;
+            width: 50%;
+        }
+        .title{
+            background-color: rgba(62, 127, 232, 0.4);
+            margin: 0px;
+        }
+        .body{
+            background-image: linear-gradient(to bottom right, gray, white);
+            margin: 0px;
+        }
+        .container{
+            display: inline-block;
+            background-color: rgba(62, 127, 232, 0.4);
+            size: auto;
+            margin: 0px;
+        }
+        .linkButton{
+            background-color: rgba(62, 127, 232, 0.0);
+            border: none;
+        }
+        .options{
+            float: left;
+        }
+        p{
+            margin: 0px;
+        }
+    </style>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+</head>
+<body>
+
+    <center>
+        <h1>Posts</h1>
+        <br>
+        <a href="/post"><i class="fas fa-edit"></i> Make a post</a>
+        <br>
+        <div class="main" th:each="post : ${posts}">
+            <div class="title">
+                <p>Title: <span th:text="${post.getTitle()}"></span></p>
+            </div>
+            <div class="body">
+                <p>Message: <span th:text="${post.getContent()}"></span></p>
+            </div>
+            <div class="container">
+               <span class="options"><i class="far fa-edit"></i>
+                   <form action="#" th:action="@{/updatePost}" th:object="${post}" method="post">
+                    <input type="hidden" th:value="${post.getId()}" name="id">
+                    <input class="linkButton" type="submit" value="Update">
+                </form>
+               </span>
+                <span class="options"><i class="fas fa-trash-alt"></i>
+                <form action="#" th:action="@{/destroyed}" th:object="${post}" method="post">
+                    <input type="hidden" th:value="${post.getId()}" name="id">
+                    <input class="linkButton" type="submit" value="delete">
+                </form>
+                </span>
+                <!--<a th:href="@{/updatePost(id=post.getId())}">Update</a>-->
+            </div>
+        </div>
+    </center>
+
+</body>
+</html>
