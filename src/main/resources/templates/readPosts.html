@@ -64,6 +64,12 @@
                     <input class="linkButton" type="submit" value="delete">
                 </form>
                 </span>
+                <span class="options"><i class="fas fa-trash-alt"></i>
+                <form action="#" th:action="@{/addCommentform}" th:object="${post}" method="post">
+                    <input type="hidden" th:value="${post.getId()}" name="id">
+                    <input class="linkButton" type="submit" value="Add comment">
+                </form>
+                </span>
                 <!--<a th:href="@{/updatePost(id=post.getId())}">Update</a>-->
             </div>
         </div>

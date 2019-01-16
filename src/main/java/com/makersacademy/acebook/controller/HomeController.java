@@ -127,8 +127,9 @@ public class HomeController {
 		return "redirect:/readPosts";
 	}
 
-	@GetMapping("/addComment")
-	public String addComment(){
+	@PostMapping("/addCommentform")
+	public String addComment(Model model, @RequestParam("id") long postid){
+		model.addAttribute("postid", postid);
 		return "addComment";
 	}
 

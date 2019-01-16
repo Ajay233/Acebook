@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Add Comment</title>
 </head>
 <body>
-    <form action="#" method="post">
-        <input type="hidden" value="3" name="postid" />
+    <form action="/addComment" method="post">
+        <input type="hidden" th:value="${postid}" name="postid" />
         <p>Add message: <input type="text" name="commenttext" /></p>
         <p><input type="submit" value="Submit" />
     </form>
