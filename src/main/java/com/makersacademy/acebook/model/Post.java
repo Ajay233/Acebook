@@ -62,7 +62,7 @@ public class Post {
     }
 
     public void incrementAced() {
-        this.aced ++;
+        this.aced += 1;
     }
 
 
