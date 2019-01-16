@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
+import java.util.Iterator;
 
 
 @Controller
@@ -131,13 +133,23 @@ public class HomeController {
 	}
 
 	@PostMapping("/addComment")
-	public String addComment(@RequestParam("commenttext") String comment, @RequestParam("postid") long postid) {
+	public String addComment(@RequestParam("commenttext") String comment, @RequestParam("postid") Long postid) {
 		commentRepository.save(new Comment(comment, postid));
-		return "redirect:/postWithComments";
+		return "redirect:/postWithComments/" + postid;
 	}
 
-	@GetMapping("/postWithComments")
-	public String postWithComments() {
+	@GetMapping("/postWithComments/{postid}")
+	public String postWithComments(Model model, @PathVariable("postid") Long postid) {
+		Iterator<Comment> allComments = commentRepository.findAll().iterator();
+		ArrayList<Comment> filteredComments = new ArrayList<>();
+		while(allComments.hasNext()) {
+			Comment comment = allComments.next();
+			if (comment.getPostid() == postid) {
+				filteredComments.add(comment);
+			}
+		}
+		model.addAttribute("comments", filteredComments);
+		model.addAttribute("post", postRepository.findById(postid).get());
 		return "postWithComments";
 	}
 }
