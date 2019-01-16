@@ -5,10 +5,10 @@
     <title>Add Comment</title>
 </head>
 <body>
-    <form action="#" th:action="@{/viewComment}" th:object="${comment}" method="post">
-        <p th:text="*{postid}" hidden />
-    <p>Add message: <input type="text" th:field="*{comment}" /></p>
-    <p><input type="submit" value="Submit" />
-</form>
+    <form action="#" method="post">
+        <input type="hidden" value="3" name="postid" />
+        <p>Add message: <input type="text" name="commenttext" /></p>
+        <p><input type="submit" value="Submit" />
+    </form>
 </body>
 </html>

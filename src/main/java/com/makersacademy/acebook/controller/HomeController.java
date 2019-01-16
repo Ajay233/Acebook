@@ -126,10 +126,18 @@ public class HomeController {
 	}
 
 	@GetMapping("/addComment")
-	public String addComment(Model model){
-        model.addAttribute("comment", new Comment("Agree with your message. Thumbs up!", 3l));
+	public String addComment(){
 		return "addComment";
 	}
 
+	@PostMapping("/addComment")
+	public String addComment(@RequestParam("commenttext") String comment, @RequestParam("postid") long postid) {
+		commentRepository.save(new Comment(comment, postid));
+		return "redirect:/postWithComments";
+	}
 
+	@GetMapping("/postWithComments")
+	public String postWithComments() {
+		return "postWithComments";
+	}
 }
