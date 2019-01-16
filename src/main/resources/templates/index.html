@@ -11,6 +11,9 @@
     <div id="app"></div>
     <a href="/post">Click here to post a message</a>
     <p><a href="/readPosts">Click here to view posts</a></p>
+    <form th:action="@{/logout}" method="post">
+        <input type="submit" value="Sign Out"/>
+    </form>
 
 
 
