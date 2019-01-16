@@ -1,9 +1,10 @@
 package com.makersacademy.acebook.controller;
 
 
+import com.makersacademy.acebook.model.Comment;
 import com.makersacademy.acebook.model.Post;
-import com.makersacademy.acebook.model.PostForm;
 import com.makersacademy.acebook.model.User;
+import com.makersacademy.acebook.repository.CommentRepository;
 import com.makersacademy.acebook.repository.PostRepository;
 import com.makersacademy.acebook.repository.UsersRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,11 +21,14 @@ public class HomeController {
 
 	private final PostRepository postRepository;
 	private final UsersRepository usersRepository;
+	private final CommentRepository commentRepository;
+
 
 	@Autowired  // Injects the Post repo into the controller
-	public HomeController(PostRepository postRepository, UsersRepository usersRepository) {
+	public HomeController(PostRepository postRepository, UsersRepository usersRepository, CommentRepository commentRepository) {
 		this.postRepository = postRepository;
 		this.usersRepository = usersRepository;
+		this.commentRepository = commentRepository;
 	}
 
 
@@ -120,5 +124,12 @@ public class HomeController {
 		usersRepository.save(user);
 		return "redirect:/readPosts";
 	}
+
+	@GetMapping("/addComment")
+	public String addComment(Model model){
+        model.addAttribute("comment", new Comment("Agree with your message. Thumbs up!", 3l));
+		return "addComment";
+	}
+
 
 }
