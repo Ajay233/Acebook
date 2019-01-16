@@ -3,11 +3,14 @@ package com.makersacademy.acebook.controller;
 
 import com.makersacademy.acebook.model.Post;
 import com.makersacademy.acebook.model.PostForm;
+import com.makersacademy.acebook.model.User;
 import com.makersacademy.acebook.repository.PostRepository;
+import com.makersacademy.acebook.repository.UsersRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpSession;
 
@@ -16,11 +19,14 @@ import javax.servlet.http.HttpSession;
 public class HomeController {
 
 	private final PostRepository postRepository;
+	private final UsersRepository usersRepository;
 
 	@Autowired  // Injects the Post repo into the controller
-	public HomeController(PostRepository postRepository) {
+	public HomeController(PostRepository postRepository, UsersRepository usersRepository) {
 		this.postRepository = postRepository;
+		this.usersRepository = usersRepository;
 	}
+
 
 	@RequestMapping(value = "/")
 	public String index(Model model) {
@@ -44,9 +50,9 @@ public class HomeController {
 
 	@PostMapping("/post")
 	public String post(@ModelAttribute Post post) {
-		System.out.println(post);
-		postRepository.save(post);
-		System.out.println(postRepository.findAll());
+		System.out.println(post); //View post before it is saved
+		postRepository.save(post); // Post is saved
+		System.out.println(postRepository.findAll()); // Prints out an array containing the posts saved in Posts table
 		return "result";
 	}
 
@@ -90,6 +96,28 @@ public class HomeController {
 		post.setTitle(title);
 		post.setContent(content);
 		postRepository.save(post);
+		return "redirect:/readPosts";
+	}
+
+	@GetMapping("signUp")
+	public String signUp(){
+		return "signUp";
+	}
+
+	@PostMapping("addUser")
+	public String addUser(@RequestParam("username")String username, @RequestParam("password")String password,
+						  @RequestParam("name")String name, @RequestParam("email")String email, RedirectAttributes redirectAttributes){
+		User user = new User(username, password, name, email);
+		usersRepository.save(user);
+		redirectAttributes.addAttribute("success", "Success, you're signed up and good to go " + user.getName());
+		return "redirect:/readPosts";
+	}
+
+	// Hard coded test of adding a user to the users table
+	@GetMapping("/signUpTest")
+	public String signUpTest(){
+		User user = new User("Ajay123", "123abc", "Ajay", "ajay123@hotmail.com");
+		usersRepository.save(user);
 		return "redirect:/readPosts";
 	}
 
