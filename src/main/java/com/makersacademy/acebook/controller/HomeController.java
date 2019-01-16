@@ -122,11 +122,12 @@ public class HomeController {
 	}
 
 	@PostMapping("/updateAced")
-	public String updateAced(@RequestParam("id")long id, Model model) {
+	public String updateAced(@RequestParam("id")long id, HttpSession httpSession) {
 		Post post = postRepository.findById((id)).get();
 		post.incrementAced();
 		postRepository.save(post);
-		model.addAttribute("aces", post.getAced());
+		System.out.println(post.getAced());
+		httpSession.setAttribute("aces", post.getAced());
 		return "redirect:/readPosts";
 	}
 

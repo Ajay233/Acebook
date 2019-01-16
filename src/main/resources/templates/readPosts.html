@@ -76,26 +76,24 @@
 
                 <form action="#" th:action="@{/destroyed}" th:object="${post}" method="post">
                     <input type="hidden" th:value="${post.getId()}" name="id">
-                    <input class="linkButton" type="submit" value="delete">
+                    <input class="linkButton" type="submit" value="Delete">
                 </form>
 
                 </span>
 
                 <span class="options">
-
+                    <span>  A&spades;
                     <form action="#" th:action="@{/updateAced}" th:object="${post}" method="post">
                         <input type="hidden" th:value="${post.getId()}" name="id">
-                        <input class="linkButton" type="submit" value="aceThisPost">
+                        <input class="linkButton" type="submit" value="Ace this post">
                     </form>
-                    <span th:text="${aces}">A&spades;</span>
+
                 </span>
-
-
+                <span th:text="${post.getAced()}"></span>
+                </span>
 
                 <!--<a th:href="@{/updatePost(id=post.getId())}">Update</a>-->
             </div>
-
-
 
         </div>
 
