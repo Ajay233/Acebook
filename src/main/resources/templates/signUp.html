@@ -28,6 +28,40 @@
             font-family: "Helvetica Neue";
             margin: 0 0;
         }
+        ul {
+            list-style-type: none;
+            margin: 0;
+            margin-bottom: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: black;
+            color: white;
+        }
+
+        li a {
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+        }
+
+        li a:hover:not(.active) {
+            background-color: rgba(121, 167, 242, 0.3);
+            cursor: pointer;
+        }
+
+        .active {
+            background-color: #4CAF50;
+        }
+
+        #home{
+            float: left;
+        }
+
+        .links{
+            float: right;
+        }
     </style>
 </head>
 <body>

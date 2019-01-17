@@ -5,4 +5,4 @@ CREATE TABLE users (
   password varchar(15) NOT NULL,
   name varchar(100) NOT NULL,
   email varchar(200) NOT NULL
-)
+);
