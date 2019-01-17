@@ -22,8 +22,8 @@ public class PostTest {
 	@Test
 	public void postAcedStartsZero() {
 		Post post = new Post("Test", "Test title");
-		post.setAced(5);
-		assertEquals(5, post.getAced());
+		post.setAced(0);
+		assertEquals(0, post.getAced());
 	}
 
 	@Test
