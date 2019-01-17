@@ -79,13 +79,9 @@
                 </span>
             </div>
             <div hidden th:id="@{commentList} + ${post.getId()}">
-                This is where the comments will show.
-
-
-                <!--<th:block th:each="comment : ${comments}">-->
-                    <!--<li th:text="${comment.getComment()}" />-->
-                <!--</th:block>-->
-
+                <th:block th:each="comment : ${comments}">
+                    <li  th:if="${comment.getPostid() == post.getId()}" th:text="${comment.getComment()}" />
+                </th:block>
             </div>
         </div>
     </center>

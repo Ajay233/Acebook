@@ -78,6 +78,7 @@ public class HomeController {
 	@GetMapping("/readPosts")
 	public String readPosts(Model model){
 		model.addAttribute("posts", postRepository.findAll());
+		model.addAttribute("comments", commentRepository.findAll());
 		return "readPosts";
 	}
 
