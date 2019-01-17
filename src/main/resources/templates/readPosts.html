@@ -70,15 +70,33 @@
                     <input class="linkButton" type="submit" value="Add comment">
                 </form>
                 </span>
-                <span class="options"><i class="fas fa-comment-dots"></i>
-                <form action="#" th:action="@{/postWithComments/} + ${post.getId()}" method="get">
-                    <input class="linkButton" type="submit" value="View comments">
-                </form>
+                <span hidden class="options" th:id="@{hidecommentsbutton} + ${post.getId()}"><i class="fas fa-comment-dots"></i>
+                    <button class="linkButton" th:onclick="'hideComments(' + ${post.getId()} + ')'">Hide comments</button>
+
                 </span>
-                <!--<a th:href="@{/updatePost(id=post.getId())}">Update</a>-->
+                <span class="options" th:id="@{viewcommentsbutton} + ${post.getId()}"><i class="fas fa-comment-dots" ></i>
+                <button class="linkButton" th:onclick="'showComments(' + ${post.getId()} + ')'">View comments</button>
+                </span>
+            </div>
+            <div hidden th:id="@{commentList} + ${post.getId()}">
+
+
+                <!--<th:block th:each="comment : ${comments}">-->
+                    <!--<li th:text="${comment.getComment()}" />-->
+                <!--</th:block>-->
+
             </div>
         </div>
     </center>
+<script>
+    function showComments(postid) {
+        console.log("show " + postid);
+    }
 
+    function hideComments(postid) {
+        console.log("hide" + postid);
+    }
+
+</script>
 </body>
 </html>
