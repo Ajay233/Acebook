@@ -20,7 +20,7 @@ import java.util.Iterator;
 
 
 @Controller
-public class HomeController {
+public class 	HomeController {
 
 	private final PostRepository postRepository;
 	private final UsersRepository usersRepository;
