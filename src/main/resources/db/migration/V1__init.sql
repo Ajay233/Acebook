@@ -1,4 +1,4 @@
-DROP TABLE IF EXISTS posts;
+DROP TABLE IF EXISTS posts CASCADE;
 
 CREATE TABLE posts (
   id bigserial PRIMARY KEY,
