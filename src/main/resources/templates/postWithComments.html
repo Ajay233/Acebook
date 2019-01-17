@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Post with comments</title>
+</head>
+<body>
+    <p>
+        Post: title = <span th:text="${post.getTitle()}" />, content = <span th:text="${post.getContent()}" />
+    </p>
+    <th:block th:each="comment : ${comments}">
+        <li th:text="${comment.getComment()}" />
+    </th:block>
+    <br>
+    <a href="/readPosts">Back to posts</a>
+
+</body>
+</html>

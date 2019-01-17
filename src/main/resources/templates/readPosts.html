@@ -92,14 +92,47 @@
                 <span th:text="${post.getAced()}"></span>
                 </span>
 
+                <span class="options"><i class="fas fa-plus"></i>
+                <form action="#" th:action="@{/addCommentform}" th:object="${post}" method="post">
+                    <input type="hidden" th:value="${post.getId()}" name="id">
+                    <input class="linkButton" type="submit" value="Add comment">
+                </form>
+                </span>
+                <span hidden class="options" th:id="@{hidecommentsbutton} + ${post.getId()}"><i class="fas fa-comment-dots"></i><br>
+                    <button class="linkButton" th:onclick="'hideComments(' + ${post.getId()} + ')'">Hide comments</button>
+
+                </span>
+                <span class="options" th:id="@{viewcommentsbutton} + ${post.getId()}"><i class="fas fa-comment-dots" ></i><br>
+                <button class="linkButton" th:onclick="'showComments(' + ${post.getId()} + ')'">View comments</button>
+                </span>
+            </div>
+            <div hidden th:id="@{commentList} + ${post.getId()}">
+                <th:block th:each="comment : ${comments}">
+                    <li  th:if="${comment.getPostid() == post.getId()}" th:text="${comment.getComment()}" />
+                </th:block>
                 <!--<a th:href="@{/updatePost(id=post.getId())}">Update</a>-->
             </div>
-
         </div>
-
-
-
     </center>
+<script>
+    function showComments(postid) {
+        var showbutton = document.getElementById("viewcommentsbutton" + postid);
+        showbutton.setAttribute("hidden","");
+        var hidebutton = document.getElementById("hidecommentsbutton" + postid);
+        hidebutton.removeAttribute("hidden");
+        var divshow = document.getElementById("commentList" + postid);
+        divshow.removeAttribute("hidden");
+    }
 
+    function hideComments(postid) {
+        var hidebutton = document.getElementById("hidecommentsbutton" + postid);
+        hidebutton.setAttribute("hidden","");
+        var showbutton = document.getElementById("viewcommentsbutton" + postid);
+        showbutton.removeAttribute("hidden");
+        var divhide = document.getElementById("commentList" + postid);
+        divhide.setAttribute("hidden", "");
+    }
+
+</script>
 </body>
 </html>
