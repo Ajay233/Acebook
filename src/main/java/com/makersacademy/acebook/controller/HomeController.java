@@ -121,4 +121,13 @@ public class HomeController {
 		return "redirect:/readPosts";
 	}
 
+	@PostMapping("/updateAced")
+	public String updateAced(@RequestParam("id")long id) {
+		Post post = postRepository.findById(id).get();
+		post.incrementAced();
+		postRepository.save(post);
+		return "redirect:/readPosts";
+	}
+
+
 }
