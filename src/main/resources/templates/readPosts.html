@@ -70,11 +70,11 @@
                     <input class="linkButton" type="submit" value="Add comment">
                 </form>
                 </span>
-                <span hidden class="options" th:id="@{hidecommentsbutton} + ${post.getId()}"><i class="fas fa-comment-dots"></i>
+                <span hidden class="options" th:id="@{hidecommentsbutton} + ${post.getId()}"><i class="fas fa-comment-dots"></i><br>
                     <button class="linkButton" th:onclick="'hideComments(' + ${post.getId()} + ')'">Hide comments</button>
 
                 </span>
-                <span class="options" th:id="@{viewcommentsbutton} + ${post.getId()}"><i class="fas fa-comment-dots" ></i>
+                <span class="options" th:id="@{viewcommentsbutton} + ${post.getId()}"><i class="fas fa-comment-dots" ></i><br>
                 <button class="linkButton" th:onclick="'showComments(' + ${post.getId()} + ')'">View comments</button>
                 </span>
             </div>
