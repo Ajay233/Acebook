@@ -79,6 +79,7 @@
                 </span>
             </div>
             <div hidden th:id="@{commentList} + ${post.getId()}">
+                This is where the comments will show.
 
 
                 <!--<th:block th:each="comment : ${comments}">-->
@@ -90,11 +91,21 @@
     </center>
 <script>
     function showComments(postid) {
-        console.log("show " + postid);
+        var showbutton = document.getElementById("viewcommentsbutton" + postid);
+        showbutton.setAttribute("hidden","");
+        var hidebutton = document.getElementById("hidecommentsbutton" + postid);
+        hidebutton.removeAttribute("hidden");
+        var divshow = document.getElementById("commentList" + postid);
+        divshow.removeAttribute("hidden");
     }
 
     function hideComments(postid) {
-        console.log("hide" + postid);
+        var hidebutton = document.getElementById("hidecommentsbutton" + postid);
+        hidebutton.setAttribute("hidden","");
+        var showbutton = document.getElementById("viewcommentsbutton" + postid);
+        showbutton.removeAttribute("hidden");
+        var divhide = document.getElementById("commentList" + postid);
+        divhide.setAttribute("hidden", "");
     }
 
 </script>
