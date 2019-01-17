@@ -18,6 +18,7 @@ public class Post {
     private Long id;
     private String content;
     private String title;
+    private int aced;
 
     private Post() {
     }
@@ -25,6 +26,7 @@ public class Post {
     public Post(String content, String title) {
         this.content = content;
         this.title = title;
+        this.aced = 0;
     }
 
     public void setId(long id){
@@ -50,4 +52,19 @@ public class Post {
     public void setTitle(String title){
         this.title = title;
     }
+
+    public int getAced(){
+        return this.aced;
+    }
+
+    public void setAced(int num) {
+        this.aced = num;
+    }
+
+    public void incrementAced() {
+        this.aced += 1;
+    }
+
+
 }
+
