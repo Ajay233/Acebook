@@ -1,2 +1,2 @@
 ALTER TABLE posts
-ADD COLUMN aced int;
+ADD COLUMN aced INT DEFAULT 0;
