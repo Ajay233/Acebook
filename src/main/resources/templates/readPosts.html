@@ -44,26 +44,54 @@
         <br>
         <a href="/post"><i class="fas fa-edit"></i> Make a post</a>
         <br>
+
+
+
         <div class="main" th:each="post : ${posts}">
+
+
+
             <div class="title">
                 <p>Title: <span th:text="${post.getTitle()}"></span></p>
             </div>
+
+
             <div class="body">
                 <p>Message: <span th:text="${post.getContent()}"></span></p>
             </div>
+
+
             <div class="container">
                <span class="options"><i class="far fa-edit"></i>
+
                    <form action="#" th:action="@{/updatePost}" th:object="${post}" method="post">
                     <input type="hidden" th:value="${post.getId()}" name="id">
                     <input class="linkButton" type="submit" value="Update">
-                </form>
+                    </form>
+
                </span>
+
+
                 <span class="options"><i class="fas fa-trash-alt"></i>
+
                 <form action="#" th:action="@{/destroyed}" th:object="${post}" method="post">
                     <input type="hidden" th:value="${post.getId()}" name="id">
-                    <input class="linkButton" type="submit" value="delete">
+                    <input class="linkButton" type="submit" value="Delete">
                 </form>
+
                 </span>
+
+                <span class="options">
+                    <span>  A&spades;
+                    <form action="#" th:action="@{/updateAced}" th:object="${post}" method="post">
+                        <input type="hidden" th:value="${post.getId()}" name="id">
+                        <input class="linkButton" type="submit" value="Ace this post">
+                    </form>
+
+                </span>
+                <span th:text="${post.getAced()}"></span>
+                </span>
+
                 <span class="options"><i class="fas fa-plus"></i>
                 <form action="#" th:action="@{/addCommentform}" th:object="${post}" method="post">
                     <input type="hidden" th:value="${post.getId()}" name="id">
@@ -82,6 +110,7 @@
                 <th:block th:each="comment : ${comments}">
                     <li  th:if="${comment.getPostid() == post.getId()}" th:text="${comment.getComment()}" />
                 </th:block>
+                <!--<a th:href="@{/updatePost(id=post.getId())}">Update</a>-->
             </div>
         </div>
     </center>

@@ -19,4 +19,20 @@ public class PostTest {
 		assertThat(post.getTitle(), containsString("hi"));
 	}
 
+	@Test
+	public void postAcedStartsZero() {
+		Post post = new Post("Test", "Test title");
+		post.setAced(0);
+		assertEquals(0, post.getAced());
+	}
+
+	@Test
+	public void postAcedIncrements() {
+		Post post = new Post("Test", "Test title");
+		post.setAced(5);
+		post.incrementAced();
+		post.incrementAced();
+		assertEquals(7, post.getAced());
+	}
+
 }
