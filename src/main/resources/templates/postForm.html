@@ -3,8 +3,65 @@
 <head>
     <title>Getting Started: Handling Form Submission</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+    <style>
+        body{
+            background-image: url("http://www.sompaisoscatalans.cat/simage/13/136113/simple-abstract-wallpaper.jpg");
+            color: white;
+            font-family: "Helvetica Neue";
+            margin: 0 0;
+        }
+
+        ul {
+            list-style-type: none;
+            margin: 0;
+            margin-bottom: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: black;
+            color: white;
+        }
+
+        li a {
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+        }
+
+        li a:hover:not(.active) {
+            background-color: rgba(121, 167, 242, 0.3);
+            cursor: pointer;
+        }
+
+        .active {
+            background-color: #4CAF50;
+        }
+
+        #home{
+            float: left;
+        }
+
+        .links{
+            float: right;
+        }
+    </style>
+
 </head>
 <body>
+<ul>
+    <li>
+        <a id="home" href="/"><i class="fas fa-home"></i> Home</a>
+    </li>
+    <li>
+        <a class="links" href="/post"><i class="fas fa-edit"></i> Create Post</a>
+    </li>
+    <li>
+        <a class="links" href="/"><i class="fas fa-sign-out-alt"></i> Logout</a>
+    </li>
+</ul>
+<br>
 <h1>Form</h1>
 <form action="#" th:action="@{/post}" th:object="${post}" method="post">
     <p>Content: <input type="text" th:field="*{content}" /></p>

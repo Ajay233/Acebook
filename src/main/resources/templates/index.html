@@ -4,19 +4,71 @@
     <meta charset="UTF-8"/>
     <title>Acebook</title>
     <link rel="stylesheet" href="/main.css" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+    <style>
+        body{
+            background-image: url("http://www.sompaisoscatalans.cat/simage/13/136113/simple-abstract-wallpaper.jpg");
+            color: white;
+            font-family: "Helvetica Neue";
+            margin: 0 0;
+        }
 
+        ul {
+            list-style-type: none;
+            margin: 0;
+            margin-bottom: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: black;
+            color: white;
+        }
+
+        li a {
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+        }
+
+        li a:hover:not(.active) {
+            background-color: rgba(121, 167, 242, 0.3);
+            cursor: pointer;
+        }
+
+        .active {
+            background-color: #4CAF50;
+        }
+
+        #home{
+            float: left;
+        }
+
+        .links{
+            float: right;
+        }
+    </style>
 </head>
 <body>
-
-    <div id="app"></div>
+<ul>
+    <li>
+        <a id="home" href="/"><i class="fas fa-home"></i> Home</a>
+    </li>
+    <li>
+        <a class="links" href="/post"><i class="fas fa-edit"></i> Create Post</a>
+    </li>
+    <li>
+        <a class="links" href="/"><i class="fas fa-sign-out-alt"></i> Logout</a>
+    </li>
+</ul>
+    <!--<div id="app"></div>-->
     <a href="/post">Click here to post a message</a>
     <p><a href="/readPosts">Click here to view posts</a></p>
 
 
 
 
-
-    <script src="built/bundle.js"></script>
+    <!--<script src="built/bundle.js"></script>-->
 
 </body>
 </html>
