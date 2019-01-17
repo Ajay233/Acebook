@@ -1,9 +1,10 @@
 package com.makersacademy.acebook.controller;
 
 
+import com.makersacademy.acebook.model.Comment;
 import com.makersacademy.acebook.model.Post;
-import com.makersacademy.acebook.model.PostForm;
 import com.makersacademy.acebook.model.User;
+import com.makersacademy.acebook.repository.CommentRepository;
 import com.makersacademy.acebook.repository.PostRepository;
 import com.makersacademy.acebook.repository.UsersRepository;
 import javassist.bytecode.Descriptor;
@@ -23,11 +24,14 @@ public class HomeController {
 
 	private final PostRepository postRepository;
 	private final UsersRepository usersRepository;
+	private final CommentRepository commentRepository;
+
 
 	@Autowired  // Injects the Post repo into the controller
-	public HomeController(PostRepository postRepository, UsersRepository usersRepository) {
+	public HomeController(PostRepository postRepository, UsersRepository usersRepository, CommentRepository commentRepository) {
 		this.postRepository = postRepository;
 		this.usersRepository = usersRepository;
+		this.commentRepository = commentRepository;
 	}
 
 
@@ -75,6 +79,7 @@ public class HomeController {
 	@GetMapping("/readPosts")
 	public String readPosts(Model model){
 		model.addAttribute("posts", postRepository.findAll());
+		model.addAttribute("comments", commentRepository.findAll());
 		return "readPosts";
 	}
 
@@ -124,6 +129,33 @@ public class HomeController {
 		return "redirect:/readPosts";
 	}
 
+	@PostMapping("/addCommentform")
+	public String addComment(Model model, @RequestParam("id") long postid){
+		model.addAttribute("postid", postid);
+		return "addComment";
+	}
+
+	@PostMapping("/addComment")
+	public String addComment(@RequestParam("commenttext") String comment, @RequestParam("postid") Long postid) {
+		commentRepository.save(new Comment(comment, postid));
+		return "redirect:/postWithComments/" + postid;
+	}
+
+	@GetMapping("/postWithComments/{postid}")
+	public String postWithComments(Model model, @PathVariable("postid") Long postid) {
+		Iterator<Comment> allComments = commentRepository.findAll().iterator();
+		ArrayList<Comment> filteredComments = new ArrayList<>();
+		while(allComments.hasNext()) {
+			Comment comment = allComments.next();
+			if (comment.getPostid() == postid) {
+				filteredComments.add(comment);
+			}
+		}
+		model.addAttribute("comments", filteredComments);
+		model.addAttribute("post", postRepository.findById(postid).get());
+		return "postWithComments";
+	}
+  
 	@PostMapping("/updateAced")
 	public String updateAced(@RequestParam("id")long id) {
 		Post post = postRepository.findById(id).get();
@@ -131,5 +163,5 @@ public class HomeController {
 		postRepository.save(post);
 		return "redirect:/readPosts";
 	}
-
+  
 }
