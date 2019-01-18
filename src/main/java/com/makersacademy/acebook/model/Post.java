@@ -1,12 +1,8 @@
 package com.makersacademy.acebook.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
-import javax.persistence.GenerationType;
-
 import lombok.Data;
+
+import javax.persistence.*;
 
 @Data
 @Entity
@@ -19,6 +15,9 @@ public class Post {
     private String content;
     private String title;
     private int aced;
+//    timestamp adds below
+    private java.sql.Timestamp created;
+    private java.sql.Timestamp modified;
 
     private Post() {
     }
@@ -27,6 +26,9 @@ public class Post {
         this.content = content;
         this.title = title;
         this.aced = 0;
+//        timestamp adds below, and in params above
+//        this.created = ...??;
+//        this.modified = ...??;
     }
 
     public void setId(long id){
@@ -64,6 +66,16 @@ public class Post {
     public void incrementAced() {
         this.aced += 1;
     }
+
+//    timestamp adds below
+    public java.sql.Timestamp getCreated() {
+        return this.created;
+    }
+
+    public java.sql.Timestamp getModified() {
+        return this.modified;
+    }
+
 
 
 }

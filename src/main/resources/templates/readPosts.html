@@ -116,6 +116,10 @@
 
             <div class="body">
                 <p>Message: <span th:text="${post.getContent()}"></span></p>
+                <!--timestamp adds below-->
+                <p>created: <span th:text="${post.getCreated()}"></span></p>
+                <p>modified: <span th:text="${post.getModified()}"></span></p>
+
             </div>
 
 
