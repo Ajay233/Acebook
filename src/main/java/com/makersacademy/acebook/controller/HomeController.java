@@ -7,7 +7,6 @@ import com.makersacademy.acebook.model.User;
 import com.makersacademy.acebook.repository.CommentRepository;
 import com.makersacademy.acebook.repository.PostRepository;
 import com.makersacademy.acebook.repository.UsersRepository;
-import javassist.bytecode.Descriptor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -134,10 +133,14 @@ public class HomeController {
 		model.addAttribute("postid", postid);
 		return "addComment";
 	}
-
+//Updated for timestamp
 	@PostMapping("/addComment")
 	public String addComment(@RequestParam("commenttext") String comment, @RequestParam("postid") Long postid) {
 		commentRepository.save(new Comment(comment, postid));
+//		Need to save back into the postRepository to update the 'last modified' timestamp
+		Post post = postRepository.findById((postid)).get();
+		post.setModified(new java.sql.Timestamp(0L));
+		postRepository.save(post);
 		return "redirect:/postWithComments/" + postid;
 	}
 

@@ -26,9 +26,6 @@ public class Post {
         this.content = content;
         this.title = title;
         this.aced = 0;
-//        timestamp adds below, and in params above
-//        this.created = ...??;
-//        this.modified = ...??;
     }
 
     public void setId(long id){
@@ -76,7 +73,9 @@ public class Post {
         return this.modified;
     }
 
-
+    public void setModified(java.sql.Timestamp modified) {
+        this.modified = modified;
+    }
 
 }
 

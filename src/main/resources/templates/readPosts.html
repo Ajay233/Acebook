@@ -24,6 +24,13 @@
             background-image: linear-gradient(to bottom right, gray, white);
             margin: 0px;
         }
+        .body-container{
+            display: flex;
+            background-color: rgba(221, 221, 221, 0.8);
+            size: auto;
+            margin: 0px;
+            /*box-shadow: 10px 10px 5px grey;*/
+        }
         .container{
             display: flex;
             background-color: rgba(62, 127, 232, 0.8);
@@ -42,6 +49,16 @@
             padding-right: 20px;
             padding-top: 5px;
             padding-bottom: 5px;
+        }
+        #stampL {
+            /*background-color: blue;*/
+            /*display:inline;*/
+            /*float:left;*/
+        }
+        #stampR {
+            /*background-color: blue;*/
+            /*display:inline;*/
+            float:right;
         }
         p{
             margin: 0px;
@@ -114,12 +131,16 @@
             </div>
 
 
-            <div class="body">
-                <p>Message: <span th:text="${post.getContent()}"></span></p>
+            <div class="body-container">
+                <p>Message: <span th:text="${post.getContent()}"></span></p><br>
                 <!--timestamp adds below-->
-                <p>created: <span th:text="${post.getCreated()}"></span></p>
-                <p>modified: <span th:text="${post.getModified()}"></span></p>
+                <p><br>
+                </p>
+            </div>
 
+            <div class="body-container" style="display:inline">created:<span th:text="${post.getCreated()}"></span>
+                <span id="stampR"><span>last modified:</span><span th:text="${post.getModified()}"></span>
+                </span>
             </div>
 
 
